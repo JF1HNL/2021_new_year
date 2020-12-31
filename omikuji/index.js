@@ -7,7 +7,7 @@ function main(){
   display(obj)
   if(!document.location.search){
     const tweetButton = document.createElement("input")
-    tweetButton.value = "tweet"
+    tweetButton.value = "結果をツイートして教えてね"
     tweetButton.type = "button"
     tweetButton.onclick = function(){tweet(obj)}
     document.body.appendChild(tweetButton)
@@ -40,8 +40,7 @@ function getUrlData(){
   }
   catch(e){
     console.error('URL取得エラー')
-    window.location.href = window.location.href
-      .split('?')[0]
+    window.location.href = window.location.href.split('?')[0]
     return false
   }
 }
