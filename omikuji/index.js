@@ -11,6 +11,12 @@ function main(){
     tweetButton.type = "button"
     tweetButton.onclick = function(){tweet(obj)}
     document.body.appendChild(tweetButton)
+    const shareButton = document.createElement("input")
+    shareButton.value = "結果をクリップボードにコピーする"
+    shareButton.id = "share"
+    shareButton.type = "button"
+    shareButton.onclick = function(){share(obj)}
+    document.body.appendChild(shareButton)
   }else{
     const jibun = document.createElement("input")
     jibun.value = "自分のおみくじを引くor確認する"
@@ -116,6 +122,15 @@ function display(obj){
   keys.forEach(e => {
     document.querySelector(`#${e}`).textContent = omikujiData[e][obj[e]]
   })
+}
+
+function share(obj){
+  document.querySelector("#share").remove()
+  const copy_dom = document.createElement("textarea")
+  copy_dom.value = `おみくじの結果は【${omikujiData.omikuji[obj.omikuji].ja}】でした！\n詳しくはこちら！\n${makeURL(obj)}`
+  document.body.appendChild(copy_dom)
+  copy_dom.select();
+  document.execCommand("copy");
 }
 
 main()
